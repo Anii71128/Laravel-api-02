@@ -8,4 +8,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::get('/product', [ProductController::class, 'index'])->name('product');
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+// Method GET (Menampilkan Detail 1 Data)
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
