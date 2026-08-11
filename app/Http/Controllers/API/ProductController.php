@@ -4,10 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
@@ -17,9 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(10);
+        $products = Product::with('kategori')->latest()->paginate(10);
         return response()->json(
-            new ProductCollection($products),
+            ProductResource::collection($products),
             Response::HTTP_OK
         );
     }

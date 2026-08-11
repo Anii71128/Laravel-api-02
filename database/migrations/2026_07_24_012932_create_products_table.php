@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\kategori;
 
 return new class extends Migration {
     /**
@@ -15,6 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->decimal('price', 10, 2);
             $table->text('description')->nullable();
+            $table->foreignIdFor(Kategori::class, 'id_kategori');
             $table->integer('stock')->default(0);
             $table->timestamps();
         });
